@@ -4,25 +4,34 @@
  */
 #pragma once
 
-#include <rrc/io/IODevice.h>
+#include <queue>
+#include <memory>
+
+#include <rrc/io/Buffer.h>
+#include <rrc/io/IOResult.h>
+#include <rrc/io/FileImpl.h>
 
 namespace rrc {
-    class File : public IODevice {
+
+    typedef std::queue<IOCommand> IOQueue;
+
+    class File {
+        friend class FileSystem;
     public:
-        enum {
-            Read, Write
-        };
+        std::shared_ptr<IOResult> open(const std::string &path, Mode mode);
 
-        virtual IOResult open(const std::string& path, int mode) = 0;
+        std::shared_ptr<IOResult> close();
 
-        virtual IOResult close(IOCallback&& callback) = 0;
+        std::shared_ptr<IOResult> isOpen();
 
-        virtual IOResult read(Buffer buffer, IOCallback&& callback) = 0;
+        std::shared_ptr<IOResult> read();
 
-        virtual IOResult write(Buffer buffer, IOCallback&& callback) = 0;
+        std::shared_ptr<IOResult> write();
 
     private:
+        File (FileImpl* mFileImpl, IOQueue &queue);
+
+        std::shared_ptr<FileImpl> mFileImpl;
+        IOQueue &mIoQueue;
     };
 }
-
-

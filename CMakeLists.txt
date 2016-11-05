@@ -63,10 +63,6 @@ set(SRCS
         include/rrc/core/TypeIdMessageFilter.h
         src/rrc/core/CallbackMessageFilter.cpp
         include/rrc/core/CallbackMessageFilter.h
-        src/rrc/io/IOService.cpp
-        include/rrc/io/IOService.h
-        src/rrc/io/IODevice.cpp
-        include/rrc/io/IODevice.h
         src/rrc/io/File.cpp
         include/rrc/io/File.h
         src/rrc/io/IOResult.cpp
@@ -75,15 +71,10 @@ set(SRCS
         include/rrc/io/Buffer.h
         src/rrc/io/unix/UnixFile.cpp
         include/rrc/io/unix/UnixFile.h
-        src/rrc/io/unix/DeviceFactory.cpp
-        include/rrc/io/unix/DeviceFactory.h
-        include/rrc/io/unix/UnixSocket.h
-        include/rrc/io/unix/UnixCommandLine.h
-        include/rrc/io/AbstractDeviceFactory.h
-        src/rrc/io/AbstractDeviceFactory.cpp
-        include/rrc/io/CommandLine.h
-        include/rrc/io/Socket.h
-        )
+        src/rrc/io/FileSystem.cpp
+        include/rrc/io/FileSystem.h
+        src/rrc/io/FileImpl.cpp
+        include/rrc/io/FileImpl.h)
 
 configure_file("${PROJECT_SOURCE_DIR}/template/VersionDefines.h.in"
                "${PROJECT_BINARY_DIR}/VersionDefines.h")

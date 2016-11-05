@@ -4,8 +4,12 @@
  */
 #pragma once
 
-
-class IOResult {
-
-};
-
+namespace rrc {
+    class IOResult {
+    public:
+        bool isReady();
+        void setState(bool ready);
+    private:
+        bool mReady;
+    };
+}
